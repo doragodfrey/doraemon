@@ -1,3 +1,63 @@
 body {
-  font: 14px Arial, sans-serif;
+  font-family: Bau-Regular;
+  src: url(/stylesheets/Bau-Regular.otf);
+  font-size: 14px;
+  
+}
+
+.grid {
+    width: 600px;
+    height: 600px;
+}
+
+.grid div {
+    width: 50%;
+    height: 50%;
+    outline: 2px dotted;
+    float: left;
+}
+
+.canvas {
+    position: absolute;
+    background-image: url('/images/canvasblank.png');
+    background-repeat: no-repeat;
+    top: 10%;
+    left: 1%;
+    width: 1550px;
+    height: 868px;
+             
+}
+
+.segment {
+    position: absolute;
+    
+}
+.segment.color-1 {
+    background: #FF3399;
+}
+.segment.color-2 {
+    background: #3399FF;
+}
+.segment.color-3 {
+    background: #33CC33;
+}
+.segment.color-4 {
+    background: #FF6600;
+}
+
+.segment.hover {
+    border: 4px solid #FFFF00;
+}
+.log .submission.hover {
+    background: #FFFF00;
+}
+
+.footer {
+    position: absolute;
+    background-image: url('/images/f1.png');
+    background-repeat: no-repeat;
+    bottom: 5%;
+    left: 1%;
+    width: 1550px;
+    height: 162px;
 }

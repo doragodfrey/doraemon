@@ -1,28 +1,82 @@
+
+  <form action="/create">
+    
+    Left <input type="number" name="left">
+    
+    Up <input type="number" name="up">
+    
+    Right <input type="number" name="right">
+    
+    Down <input type="number" name="down">
+
+    <input type="submit" value="plot">
+    
+</form>
+
 <p>
-    The temperature near Green Hall is {{temperature}} and the wind direction is from {{wind_direction}}°.
 </p>
 
-<p>
-    The next bus at York and Chapel is arriving {{arriving_in}} on route {{route}}.
+<!-- 
+<div class="grid">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div> 
+</div>
+-->
 
-<div style="font-size:{{font_size}}pt; margin-left:{{margin}}pt;">
-
-    {{#each phrases}}
-    
-        <div>
-            <span style="display: inline-block; transform: rotate({{../wind_direction}}deg);">
-                <a href="/show?id={{id}}">Someone</a> is {{preposition}} {{noun}}
-            </span>
-        </div>
-    
-    {{/each}}
-    
+<div class="canvas">
+  
+  {{#each segments}}
+  
+    <div class="segment color-{{color}}" data-submission-id="{{id}}" style="top:{{top}}px; left:{{left}}px; width:{{width}}px; height:{{height}}px;"></div>
+  
+  {{/each}}
+  
 </div>
 
-<p>
-    <a href="/new">Add a phrase</a>
-</p>
-<p>
-    <a href="/about">About this site</a>
-</p>
+<div class="remaining">
+  {{remaining}}
+</div>
 
+<div class="log">
+  {{#each submissions}}
+    <div class="submission" data-submission-id="{{id}}" title="{{created}}">
+      {{left}}.{{up}}.{{right}}.{{down}}
+    </div>
+  {{/each}}
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+  
+  // When you roll over a log entry, highlight the corresponding segments
+  $('.log .submission').on('mouseover', function() {
+    var submission_id = $(this).data('submission-id');
+    $(this).addClass('hover');
+    $(".segment[data-submission-id='" + submission_id + "']").addClass('hover');
+  });
+  $('.log .submission').on('mouseout', function() {
+    var submission_id = $(this).data('submission-id');
+    $(this).removeClass('hover');
+    $(".segment[data-submission-id='" + submission_id + "']").removeClass('hover');
+  });
+  
+  // When you roll over a segment, highlight the corresponding log entry
+  $('.segment').on('mouseover', function() {
+    var submission_id = $(this).data('submission-id');
+    $(this).addClass('hover');
+    $(".log .submission[data-submission-id='" + submission_id + "']").addClass('hover');
+  });
+  $('.segment').on('mouseout', function() {
+    var submission_id = $(this).data('submission-id');
+    $(this).removeClass('hover');
+    $(".log .submission[data-submission-id='" + submission_id + "']").removeClass('hover');
+  });
+  
+</script>
